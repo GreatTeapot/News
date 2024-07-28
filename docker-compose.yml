@@ -1,11 +1,12 @@
 version: '3.8'
+name: docker_news
 
 services:
   postgres:
     image: postgres:15
     container_name: postgres_news
     ports:
-      - "5432:5432"
+      - "5437:5432"
     env_file:
       - .env-non-dev
     volumes:
@@ -26,7 +27,7 @@ services:
     container_name: news_app
     depends_on:
       - postgres
-    command: ["/app/docker/app.sh"]
+    command: ["/bin/bash","/app/docker-d/new.sh"]
     ports:
       - 8000:8000
 
@@ -52,7 +53,7 @@ services:
 #    env_file:
 #      - .env-non-dev
 #    container_name: celery_app
-#    command: ["/test_app/docker/celery.sh", "celery"]
+#    command: ["/test_app/docker-d/celery.sh", "celery"]
 #    depends_on:
 #      - redis
 #
@@ -62,7 +63,7 @@ services:
 #    env_file:
 #      - .env-non-dev
 #    container_name: flower_app
-#    command: ["/test_app/docker/celery.sh", "flower"]
+#    command: ["/test_app/docker-d/celery.sh", "flower"]
 #    depends_on:
 #      - redis
 #      - celery

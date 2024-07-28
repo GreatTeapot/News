@@ -8,6 +8,5 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-RUN chmod a+x /app/docker/*.sh
+RUN chmod a+x /app/docker-d/*.sh
 
-CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
